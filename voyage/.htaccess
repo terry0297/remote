@@ -1,0 +1,61 @@
+RewriteEngine on
+
+RewriteRule ^api/insertclient$ insertclient.php [L]
+RewriteRule ^api/insertclient/$ insertclient.php [L]
+
+RewriteRule ^api/insertvoyage$ insertvoyage.php [L]
+RewriteRule ^api/insertvoyage/$ insertvoyage.php [L]
+
+RewriteRule ^api/insertavis$ insertavis.php [L]
+RewriteRule ^api/insertavis/$ insertavis.php [L]
+
+
+
+RewriteRule ^api/readallclient$ readallclient.php [L]
+RewriteRule ^api/readallclient/$ readallclient.php [L]
+
+RewriteRule ^api/readclient$ readclient.php [L]
+RewriteRule ^api/readclient/$ readclient.php [L]
+RewriteRule ^api/readclient/([0-9]+)$ readclient.php?clientID=$1 [L]
+RewriteRule ^api/readclient/([0-9]+)/$ readclient.php?clientID=$1 [L]
+
+RewriteRule ^api/updateclient$ updateclient.php [L]
+RewriteRule ^api/updateclient/$ updateclient.php [L]
+
+
+RewriteRule ^api/deleteclient$ deleteclient.php [L]
+RewriteRule ^api/deleteclient/$ deleteclient.php [L]
+
+RewriteRule ^api/readallavis$ readallavis.php [L]
+RewriteRule ^api/readallavis/$ readallavis.php [L]
+
+RewriteRule ^api/readavis$ readavis.php [L]
+RewriteRule ^api/readavis/$ readavis.php [L]
+RewriteRule ^api/readavis/([0-9]+)$ readavis.php?avisID=$1 [L]
+RewriteRule ^api/readavis/([0-9]+)/$ readavis.php?avisID=$1 [L]
+
+RewriteRule ^api/updateavis$ updateavis.php [L]
+RewriteRule ^api/updateavis/$ updateavis.php [L]
+
+
+RewriteRule ^api/deleteavis$ deleteavis.php [L]
+RewriteRule ^api/deleteavis/$ deleteavis.php [L]
+
+RewriteRule ^api/readallvoyage$ readallvoyage.php [L]
+RewriteRule ^api/readallvoyage/$ readallvoyage.php [L]
+
+RewriteRule ^api/readvoyage$ readvoyage.php [L]
+RewriteRule ^api/readvoyage/$ readvoyage.php [L]
+RewriteRule ^api/readvoyage/([0-9]+)$ readvoyage.php?voyageID=$1 [L]
+RewriteRule ^api/readvoyage/([0-9]+)/$ readvoyage.php?voyageID=$1 [L]
+
+RewriteRule ^api/updatevoyage$ updatevoyage.php [L]
+RewriteRule ^api/updatevoyage/$ updatevoyage.php [L]
+
+
+RewriteRule ^api/deletevoyage$ deletevoyage.php [L]
+RewriteRule ^api/deletevoyage/$ deletevoyage.php [L]
+
+
+
+

@@ -1,0 +1,707 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "API",
+        "description": "Cette API permet aux tours-operateurs de gérer les avis de leurs clients sur les qu'ils proposent",
+        "contact": {
+            "email": "terrychevon@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://www.voyagecenter.ovh/voyage/api/"
+            
+        }
+    ],
+    "paths":{
+        "/readallclient":{
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Afficher tous les clients",
+                "responses": {
+                    "200": {
+                        "description": "Affichage des résultats"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/readclient/{clientID}": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Afficher un client",
+                "parameters": [
+                    {
+                        "name": "clientID",
+                        "in": "path",
+                        "description": "Paramètre en GET . Afin d'utiliser cette API de démo dans de bonnes conditions, nous vous suggérons d'entrer les identifiants 1 ou 2.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Affichage des résultats"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/updateclient": {
+            "put": {
+                "tags": [
+                    "Client"
+                ],
+                "summary" : "Modifier un client",
+                "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "clientID",
+                                "prenom",
+                                "nom",
+                                "email"
+                            ],
+                            "properties": {
+                                    "clientID": {
+                                        "description": "Identifiant unique du client",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "prenom": {
+                                        "description": "Prenom du client",
+                                        "type": "string",
+                                        "example": "prenom 1"
+                                    },
+                                    "nom": {
+                                        "description": "Nom du client",
+                                        "type": "string",
+                                        "example": "nom 1"
+                                    },
+                                    "email": {
+                                        "description": "Adresse email du client",
+                                        "type": "string",
+                                        "example": "email1@email.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Modifier les datas"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "400": {
+                        "description": "Tous les champs sont obligatoires"
+                    }
+                }
+            }
+        },
+        "/insertclient": {
+            "post": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Creer un nouveau client",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prenom",
+                                    "nom",
+                                    "email"
+                                ],
+                                    "properties": {
+                                        "prenom": {
+                                            "description": "Prenom du client",
+                                            "type": "string",
+                                            "example": "prenom 1"
+                                    },
+                                    "nom": {
+                                        "description": "Nom du client",
+                                        "type": "string",
+                                        "example": "nom 1"
+                                    },
+                                    "email": {
+                                        "description": "Adresse email du client",
+                                        "type": "string",
+                                        "example": "client1@email.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                "201": {
+                        "description": "Insersion réussi "
+                        },
+                "405": {
+                        "description": "Méthode non autorisé"
+                        },
+                "400": {
+                        "description": "Tous les champs sont obligatoires"
+                        }
+                    }   
+                }
+            },
+            "/deleteclient": {
+                "delete": {
+                    "tags": [
+                        "Client"
+                    ],
+                    "summary": "Supprimer un client",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "required": [
+                                        "clientID"
+                                    ],
+                                    "properties": {
+                                        "clientID": {
+                                            "description": "Identifiant unique du client",
+                                            "type":"integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type":"object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Client supprimé"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisés"
+                    },
+                    "400": {
+                        "description": "Tous les champs sont obligatoires"
+                    }
+                }
+
+            }
+        },
+        "/readallvoyage":{
+            "get": {
+                "tags": [
+                    "Voyage"
+                ],
+                "summary": "Afficher tous les voyage",
+                "responses": {
+                    "200": {
+                        "description": "Affichage des résultats"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        }
+    ,
+    "/readvoyage/{voyageID}": {
+            "get": {
+                "tags": [
+                    "Voyage"
+                ],
+                "summary": "Afficher un voyage",
+                "parameters": [
+                    {
+                        "name": "voyageID",
+                        "in": "path",
+                        "description": "Paramètre en GET .Afin d'utiliser cette API de démo dans de bonnes conditions, nous vous suggérons d'entrer les identifiants 1 ou 2.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+            
+                    "200": {
+                        "description": "Affichage des résultats"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/updatevoyage": {
+            "put": {
+                "tags": [
+                    "Voyage"
+                ],
+                "summary" : "Modifier un client",
+                "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "titre",
+                                "presentation",
+                                "voyageID"
+                            ],
+                            "properties": {
+                                    "titre": {
+                                        "description": "Titre du voyage",
+                                        "type": "string",
+                                        "example": "voyage 1"
+                                    },
+                                    "presentation": {
+                                        "description": "Présentation du voyage",
+                                        "type": "string",
+                                        "example": "description 1"
+                                    },
+                                    "voyageID": {
+                                        "description": "Clé unique du voyage",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Modification effectuée"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisés"
+                    },
+                    "400": {
+                        "description": "Tous les champs sont obligatoires"
+                    }
+                }
+            }
+        },
+        "/insertvoyage": {
+            "post": {
+                "tags": [
+                    "Voyage"
+                ],
+                "summary": "Creer un nouveau voyage",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titre",
+                                    "presentation"
+                                ],
+                                    "properties": {
+                                        "titre": {
+                                            "description": "Titre du voyage",
+                                            "type": "string",
+                                            "example": "voyage 1"
+                                        },
+                                        "presentation": {
+                                            "description": "Description du voyage",
+                                            "type": "string",
+                                            "example": "description 1"
+                                        }    
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                    "201": {
+                            "description": "Insersion réussi "
+                            },
+                    "405": {
+                            "description": "Méthode non autorisé"
+                            },
+                    "400": {
+                            "description": "Tous les champs sont obligatoires"
+                            }
+                        }   
+                    }
+                },
+            "/deletevoyage": {
+                "delete": {
+                    "tags": [
+                        "Voyage"
+                    ],
+                    "summary": "Supprimer un Voyage",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "required": [
+                                        "voyageID"
+                                    ],
+                                    "properties": {
+                                        "voyageID": {
+                                            "description": "Identifiant unique du client",
+                                            "type":"integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type":"object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Voyage supprimé"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisé"
+                    },
+                    "400": {
+                        "description": "Tous les champs sont obligatoires"
+                    }
+                }
+
+            }
+        },
+        "/readallavis":{
+            "get": {
+                "tags": [
+                    "Avis"
+                ],
+                "summary": "Afficher tous les avis",
+                "responses": {
+                    "200": {
+                        "description": "Affichage des résultats"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/readavis/{avisID}": {
+            "get": {
+                "tags": [
+                    "Avis"
+                ],
+                "summary": "Afficher un avis",
+                "parameters": [
+                    {
+                        "name": "avisID",
+                        "in": "path",
+                        "description": "Paramètre en GET . Afin d'utiliser cette API de démo dans de bonnes conditions, nous vous suggérons d'entrer les identifiants 1 ou 2.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+            
+                    "200": {
+                        "description": "Affichage des résultats"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "404": {
+                        "description": "Non trouvé"
+                    }
+                }
+            }
+        },
+        "/updateavis": {
+            "put": {
+                "tags": [
+                    "Avis"
+                ],
+                "summary" : "Modifier un avis",
+                "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "avisID",
+                                "avis",
+                                "voyageID",
+                                "clientID"
+                                
+                            ],
+                            "properties": {
+                                    "avisID": {
+                                        "description": "Identifiant unique de l'avis",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "avis": {
+                                        "description": "Présentation du voyage",
+                                        "type": "string",
+                                        "example": "avis 2"
+                                    },
+                                    "voyageID": {
+                                        "description": "Clé unique du voyage",
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "clientID": {
+                                        "description": "Clé unique du client",
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Modification effectuée"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisée"
+                    },
+                    "400": {
+                        "description": "Tous les champs sont obligatoires"
+                    }
+                }
+            }
+        },
+        "/insertavis": {
+            "post": {
+                "tags": [
+                    "Avis"
+                ],
+                "summary": "Creer un avis",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "avis",
+                                    "voyageID",
+                                    "clientID"
+                                ],
+                                    "properties": {
+                                        "avis": {
+                                            "description": "Avis du client",
+                                            "type": "string",
+                                            "example": "avis 1"
+                                        },
+                                        "voyageID": {
+                                            "description": "Clé unique du voyage",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                    
+                                        "clientID": {
+                                            "description": "Clé unique du client",
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                "201": {
+                        "description": "Insersion réussi "
+                        },
+                "405": {
+                        "description": "Méthode non autorisé"
+                        },
+                "400": {
+                        "description": "Tous les champs sont obligatoires"
+                        }
+                    }   
+                }
+            },
+            "/deleteavis": {
+                "delete": {
+                    "tags": [
+                        "Avis"
+                    ],
+                    "summary": "Supprimer un avis",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "required": [
+                                        "avisID"
+                                    ],
+                                    "properties": {
+                                        "avisID": {
+                                            "description": "Identifiant unique de l'avis",
+                                            "type":"integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type":"object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Voyage supprimé"
+                    },
+                    "405": {
+                        "description": "Méthode non autorisés"
+                    },
+                    "400": {
+                        "description": "Tous les champs sont obligatoires"
+                    }
+                }
+
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Client": {
+                "description": "Représente un client",
+                "properties": {
+                    "clientID": {
+                        "description": "Clé unique du client",
+                        "type": "integer"
+                    },
+                    "prenom": {
+                        "description": "Prenom du client",
+                        "type": "string"
+                    },
+                    "nom": {
+                        "description": "Nom du client",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Adresse email du client",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Voyage": {
+                "description": "Représente un voyage",
+                "properties": {
+                    "voyageID": {
+                        "description": "Clé unique du voyage",
+                        "type": "integer"
+                    },
+                    "presentation": {
+                        "description": "Description du voyage",
+                        "type": "string"
+                    },
+                    "titre": {
+                        "description": "titre du voyage",
+                        "type": "string"
+                    }
+                  
+                },
+                "type": "object"
+            },
+            "Avis": {
+                "description": "Représente un avis client",
+                "properties": {
+                    "avisID": {
+                        "description": "Clé unique de l'avis",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "avis": {
+                        "description": "Description du voyage",
+                        "type": "string",
+                        "example": "Avis du client sur le voyage"
+                    },
+                    "voyageID": {
+                        "description": "Clé unique du voyage",
+                        "type": "string",
+                        "example": 1
+                    },
+                    "clientID": {
+                        "description": "Clé unique du client",
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "Aviss": {
+        "description": "Affichage d'un avis client . Il est à préciser que ces résultats vous donneront également accès aux informations liées au client ainsi qu'au voyage grâce à leur clé respective: clientID & voyageID.",
+        "properties": {
+        "avisID": {
+                "description": "Clé unique de l'avis",
+                "type": "integer",
+            "example": 1
+        },
+        "avis": {
+             "description": "Avis du client",
+             "type": "string",
+             "example": "Avis du client sur le voyage"
+                },
+            "voyageID": {
+                    "description": "Clé unique du voyage",
+                    "type": "string",
+                    "example": 1
+                    },
+            "clientID": {
+                    "description": "Clé unique du client",
+                    "type": "integer",
+                    "example": 1
+                    },
+            "client": {
+                    "Prenom": "Prenom du client",
+                    "Nom" : "Nom du clien",
+                    "Email": "Mail du client",
+                    "type": "string" 
+                    },
+                "voyage": {
+                    "description": "Description du voyage",
+                    "type": "string",
+                    "titre": "Titre du voyage"
+                    }
+
+                },
+            "type": "object"
+            }
+        }
+    }
+ }
